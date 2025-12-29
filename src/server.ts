@@ -1,5 +1,4 @@
 import express, {type Request,type Response} from "express";
-import {type Wallpaper} from './models.js';
 import { prisma } from './lib/prisma.js';
 
 const app = express();
@@ -12,22 +11,14 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-let wallpapers: Wallpaper[] = [ // Exemplo de dados -> LIsta de wallpapers
-    {
-        id: "1",
-        title: "Neon City",
-        category: "Cyberpunk",
-        imageUrl: "/uploads/neon-city.jpg",
-        createdAt: new Date()
-    }
-];
 
-app.get("/wallpapers", (req: Request, res: Response) => {
-    res.json(wallpapers) // Retorna a lista de wallpapers
+app.get("/wallpapers", async (req: Request, res: Response) => {
+    const wallpapers = await prisma.wallpaper.findMany();
+    res.json(wallpapers); // Retorna a lista de wallpapers
 });
 
 app.post("/wallpapers", async (req: Request, res: Response) =>{
-    const result = await prisma.Wallpaper.create({
+    const result = await prisma.wallpaper.create({
         data: {
             title: req.body.title,
             category: req.body.category,
