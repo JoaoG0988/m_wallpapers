@@ -1,11 +1,16 @@
-interface AppConfig {
-    name: string;
-    port: number;
-}
+import express, {type Request,type Response} from "express";
 
-const config: AppConfig = {
-    name: "WallHub - Wallpaper Manager",
-    port: 3000
-};
+const app = express();
 
-console.log(` ${config.name} rodando http://localhost:${config.port}`)
+app.use(express.json());
+
+
+app.get("/", (req: Request, res : Response) => {
+    res.json({message: "Lista de wallpapers"});
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
