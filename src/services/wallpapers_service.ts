@@ -1,0 +1,1 @@
+const prismaDatabase = require ("./lib/prisma.ts");

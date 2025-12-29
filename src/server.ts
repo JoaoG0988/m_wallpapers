@@ -1,10 +1,9 @@
 import express, {type Request,type Response} from "express";
-import { prisma } from './lib/prisma.js';
+const prismaDatabase = require ("./lib/prisma.ts");
 
 const app = express();
 
 app.use(express.json());
-
 const PORT = 3000;
 
 app.listen(PORT, () => {
@@ -13,12 +12,12 @@ app.listen(PORT, () => {
 
 
 app.get("/wallpapers", async (req: Request, res: Response) => {
-    const wallpapers = await prisma.wallpaper.findMany();
+    const wallpapers = await prismaDatabase.wallpaper.findMany();
     res.json(wallpapers); // Retorna a lista de wallpapers
 });
 
 app.post("/wallpapers", async (req: Request, res: Response) =>{
-    const result = await prisma.wallpaper.create({
+    const result = await prismaDatabase.wallpaper.create({
         data: {
             title: req.body.title,
             category: req.body.category,
