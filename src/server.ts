@@ -1,5 +1,5 @@
 import express, {type Request,type Response} from "express";
-const prismaDatabase = require ("./lib/prisma.ts");
+import {prismaDatabase} from './lib/prisma.js';
 
 const app = express();
 
