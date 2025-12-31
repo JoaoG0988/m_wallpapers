@@ -1,24 +1,22 @@
 wallpapers collection that i have used on my computer.
 
-3. Instalação
+1. Instalação
 No terminal, instale as dependências do projeto:
 
 ```bash
 npm run install
 ```
 
-4. Preparar o Banco de Dados
-Com o Docker rodando, execute as migrações do Prisma para criar as tabelas no PostgreSQL:
-
-```bash
-npm run prisma:migrate
-```
-
-1. Iniciar o Projeto
+2. Iniciar o Projeto
 Para subir o banco de dados e o servidor simultaneamente, utilize o comando mestre:
 
 ```bash
 npm run start:all
+```
+
+3. Fazer as migrações necessárias no Banco de Dados
+```bash
+npm run prisma:migrate
 ```
 
 O servidor estará rodando em: http://localhost:3000
