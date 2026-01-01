@@ -4,11 +4,10 @@
   "description": "wallpapers collection that i have used on my computer.",
   "main": "index.js",
   "scripts": {
-    "install": "npm install -D npm-run-all",
     "docker:up": "docker compose up -d",
     "dev:server": "tsx watch src/server.ts",
     "prisma:migrate": "npx prisma migrate dev",
-    "start:all": "run-s docker:up dev:server",
+    "start:all": "npm run docker:up && npm run dev:server",
     "stop": "docker compose down"
   },
   "repository": {

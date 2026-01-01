@@ -1,1 +1,2 @@
-const prismaDatabase = require ("./lib/prisma.ts");
+import {prismaDatabase} from '../lib/prisma.js';
+
