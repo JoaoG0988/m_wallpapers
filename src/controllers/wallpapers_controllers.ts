@@ -11,6 +11,17 @@ const getAllWallpapers = async (req: Request, res: Response) => {
     }
 };
 
+const getWallpaperById = async (req : Request, res: Response) => {
+    try {
+        const id = Number(req.params.id);
+        const result = await wallpapersService.getWallpaperById(id);
+        res.status(result.status).json(result.data);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao processar a requisição' });
+    }
+};
+
 export default {
-    getAllWallpapers
+    getAllWallpapers,
+    getWallpaperById
 };

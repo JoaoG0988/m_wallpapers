@@ -9,6 +9,19 @@ const getAllWallpapers = async () => {
     }
 };
 
+const getWallpaperById = async (id: number) => {
+    try{
+        const wallpaper = await prismaDatabase.wallpaper.findUnique({
+            where: { id }
+        });
+        return { status: 200, data: wallpaper };
+    } catch {
+        return { status: 500, data: { message: 'Erro ao buscar wallpaper' } };
+    }
+
+};
+
 export default {
-    getAllWallpapers
+    getAllWallpapers,
+    getWallpaperById
 };
