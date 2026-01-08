@@ -34,8 +34,20 @@ const createWallpaper = async (wallpaperData: { title: string, imageUrl: string}
     }
 };
 
+const deleteWallpaper  = async (id : number) => {
+    try {
+        await prismaDatabase.wallpaper.delete({
+            where: { id }
+        });
+        return { status: 200, data: { message: 'Wallpaper deletado com sucesso' } };
+    } catch {
+        return { status: 500, data: { message: 'Erro ao deletar wallpaper' } };
+    }
+};
+
 export default {
     getAllWallpapers,
     getWallpaperById,
-    createWallpaper
+    createWallpaper,
+    deleteWallpaper
 };

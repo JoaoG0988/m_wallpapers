@@ -31,8 +31,19 @@ const createWallpaper = async (req: Request, res: Response) => {
     }
 };
 
+const deleteWallpaper = async (req: Request, res: Response) => {
+    try {
+        const id = Number(req.params.id);
+        const result = await wallpapersService.deleteWallpaper(id);
+        res.status(result.status).json(result.data);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao deletar wallpaper' });
+    }
+};
+
 export default {
     getAllWallpapers,
     getWallpaperById,
-    createWallpaper
+    createWallpaper,
+    deleteWallpaper
 };
