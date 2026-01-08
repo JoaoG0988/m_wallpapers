@@ -7,7 +7,7 @@ const getAllWallpapers = async (req: Request, res: Response) => {
         const result = await wallpapersService.getAllWallpapers();
         res.status(result.status).json(result.data);
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao processar a requisição' });
+        res.status(500).json({ message: 'Erro ao recuperar wallpapers' });
     }
 };
 
@@ -17,11 +17,22 @@ const getWallpaperById = async (req : Request, res: Response) => {
         const result = await wallpapersService.getWallpaperById(id);
         res.status(result.status).json(result.data);
     } catch (error) {
+        res.status(500).json({ message: 'Erro ao recuperar wallpaper' });
+    }
+};
+
+const createWallpaper = async (req: Request, res: Response) => {
+    try {
+        const wallpaperData = req.body;
+        const result = await wallpapersService.createWallpaper(wallpaperData);
+        res.status(result.status).json(result.data);
+    } catch (error) {
         res.status(500).json({ message: 'Erro ao processar a requisição' });
     }
 };
 
 export default {
     getAllWallpapers,
-    getWallpaperById
+    getWallpaperById,
+    createWallpaper
 };

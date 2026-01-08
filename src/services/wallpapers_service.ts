@@ -18,10 +18,24 @@ const getWallpaperById = async (id: number) => {
     } catch {
         return { status: 500, data: { message: 'Erro ao buscar wallpaper' } };
     }
+};
 
+const createWallpaper = async (wallpaperData: { title: string, imageUrl: string}) => {
+    try {
+        const newWallpaper = await prismaDatabase.wallpaper.create({
+            data: {
+                title: wallpaperData.title,
+                imageUrl: wallpaperData.imageUrl
+            }
+        });
+        return { status: 201, data: newWallpaper };
+    } catch {
+        return { status: 500, data: { message: 'Erro ao criar wallpaper' } };
+    }
 };
 
 export default {
     getAllWallpapers,
-    getWallpaperById
+    getWallpaperById,
+    createWallpaper
 };
