@@ -1,5 +1,4 @@
 import {type Request,type Response} from "express";
-
 import wallpapersService from '../services/wallpapers_service.js';
 
 const getAllWallpapers = async (req: Request, res: Response) => {
@@ -22,13 +21,10 @@ const getWallpaperById = async (req : Request, res: Response) => {
 };
 
 const createWallpaper = async (req: Request, res: Response) => {
-    try {
-        const wallpaperData = req.body;
-        const result = await wallpapersService.createWallpaper(wallpaperData);
-        res.status(result.status).json(result.data);
-    } catch (error) {
-        res.status(500).json({ message: 'Erro ao processar a requisição' });
-    }
+    const {title, category, resolution, fileName} = req.body;
+    if (!fileName) return res.status(400).json({message: "Nome do arquivo é obrigatório"});
+    const result = await wallpapersService.createWallpaper({title, category, resolution, fileName});
+    res.status(result.status).json(result.data);
 };
 
 const deleteWallpaper = async (req: Request, res: Response) => {

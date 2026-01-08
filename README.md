@@ -21,4 +21,9 @@ npm run start:all
 npm run prisma:migrate
 ```
 
-O servidor estará rodando em: http://localhost:3000
+
+| Serviço | URL | Descrição |
+|---------|-----|-----------|
+| **Frontend** | [http://localhost:5173](http://localhost:5173) | Interface principal da aplicação |
+| **Backend API** | [http://localhost:3000](http://localhost:3000) | BACKEND |
+| **Prisma Studio** | [http://localhost:5555](http://localhost:5555) | Visualização do banco de dados Prisma |
