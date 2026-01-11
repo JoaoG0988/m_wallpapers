@@ -29,27 +29,13 @@ function App() {
         M-Wallpapers
       </h1>
 
-    <div className="flex justify-center gap-5 mb-11">
-        <a
-        href="https://github.com/JoaoG0988"
-        target="_blank"
-        className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 transition-all"
-        >
-        <Github size={19} />
-        </a>
-        <a
-        href="https://www.instagram.com/_joao.gbl/"
-        target="_blank"
-        className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-pink-500 hover:border-pink-500/50 transition-all"
-        >
-        <Instagram size={19} />
-        </a>
-    </div>
+      <div>
+        <p className="max-w-6xl mx-auto text-zinc-400 text-center mb-16">
+          The wallpaper collection here, I've downloaded from different sites, I have no way of knowing if there is a copyright on these images. If you find any of the image hosted here is yours and of limited use, please let me know and i will remove it.
+        </p>
+      </div>
 
-      {/* A opacidade do grid inteiro começa em 0 e vai para 100.
-          'duration-1000' torna a entrada bem suave.
-      */}
-      <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-16 max-w-[90%] mx-auto transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-16 max-w-[90%] mx-auto transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'} mb-20`}>
         {wallpapers.map((wall, index) => (
           <div
             key={wall.id}
@@ -89,7 +75,31 @@ function App() {
           </div>
         ))}
       </div>
+
+        <div className="flex justify-center gap-5 mb-10 mt-12">
+            <a
+            href="https://github.com/JoaoG0988"
+            target="_blank"
+            className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 transition-all"
+            >
+            <Github size={19} />
+            </a>
+            <a
+            href="https://www.instagram.com/_joao.gbl/"
+            target="_blank"
+            className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-pink-500 hover:border-pink-500/50 transition-all"
+            >
+            <Instagram size={19} />
+            </a>
+        </div>
+
+      <div>
+        <footer className="mt-10 text-center text-zinc-600 text-[14px]">
+          Developed by João Gabriel 2024 @ All rights reserved.
+        </footer>
+      </div>
     </div>
+
   )
 }
 
