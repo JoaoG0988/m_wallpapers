@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Github, Instagram } from 'lucide-react';
 
 interface Wallpaper {
   id: string;
@@ -24,9 +25,26 @@ function App() {
 
   return (
     <div className="min-h-screen bg-zinc-950 p-9 font-sans overflow-x-hidden">
-      <h1 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">
+      <h1 className="text-5xl font-black text-white mb-12 text-center uppercase tracking-tighter">
         M-Wallpapers
       </h1>
+
+    <div className="flex justify-center gap-5 mb-11">
+        <a
+        href="https://github.com/JoaoG0988"
+        target="_blank"
+        className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 transition-all"
+        >
+        <Github size={19} />
+        </a>
+        <a
+        href="https://www.instagram.com/_joao.gbl/"
+        target="_blank"
+        className="p-2 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-pink-500 hover:border-pink-500/50 transition-all"
+        >
+        <Instagram size={19} />
+        </a>
+    </div>
 
       {/* A opacidade do grid inteiro começa em 0 e vai para 100.
           'duration-1000' torna a entrada bem suave.
