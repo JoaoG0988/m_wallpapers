@@ -9,27 +9,64 @@ interface Wallpaper {
 
 function App() {
   const [wallpapers, setWallpapers] = useState<Wallpaper[]>([])
+  const [loaded, setLoaded] = useState(false) // Estado para controlar a animação de entrada
 
   useEffect(() => {
-    // Procura os wallpapers na tua API
+    // Procura os wallpapers na API
     fetch('http://localhost:3000/wallpapers')
       .then(res => res.json())
-      .then(data => setWallpapers(data))
+      .then(data => {
+        setWallpapers(data)
+        // Pequena pausa para disparar a animação após o carregamento dos dados
+        setTimeout(() => setLoaded(true), 100)
+      })
   }, [])
 
-
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1 className="text-3xl font-bold text-blue-500">Teste Tailwind</h1>
-      <h1>M-Wallpapers Gallery</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-        {wallpapers.map(wall => (
-          <div key={wall.id} style={{ border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-            <img src={wall.imageUrl} alt={wall.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-            <div style={{ padding: '10px' }}>
-              <h3>{wall.title}</h3>
-              <p>{wall.resolution}</p>
-              <a href={wall.imageUrl} target="_blank" download style={{ color: 'blue' }}>Download Original</a>
+    <div className="min-h-screen bg-zinc-950 p-9 font-sans overflow-x-hidden">
+      <h1 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">
+        M-Wallpapers
+      </h1>
+
+      {/* A opacidade do grid inteiro começa em 0 e vai para 100.
+          'duration-1000' torna a entrada bem suave.
+      */}
+      <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-16 max-w-[90%] mx-auto transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+        {wallpapers.map((wall, index) => (
+          <div
+            key={wall.id}
+            // 'transitionDelay' cria o efeito cascata: cada card espera 50ms a mais que o anterior
+            style={{ transitionDelay: !loaded ? `${index * 50}ms` : '0ms' }}
+            className={`
+              group bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 flex flex-col
+              transition-all duration-500
+              ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+              hover:border-zinc-500 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:-translate-y-1
+            `}
+          >
+            <div className="overflow-hidden h-40">
+              <img
+                src={wall.imageUrl}
+                alt={wall.title}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+            </div>
+
+            <div className="p-2.5">
+              <h3 className="text-[13px] font-bold text-zinc-400 truncate uppercase tracking-tight transition-colors group-hover:text-white">
+                {wall.title}
+              </h3>
+              <p className="text-zinc-600 text-[9px] font-mono mb-2">
+                {wall.resolution}
+              </p>
+
+              <a
+                href={wall.imageUrl}
+                target="_blank"
+                className="block w-full text-center py-1 bg-zinc-800 text-zinc-400 text-[11px] font-bold rounded transition-all duration-300 group-hover:bg-white group-hover:text-black"
+              >
+                VIEW
+              </a>
             </div>
           </div>
         ))}
