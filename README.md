@@ -1,4 +1,7 @@
-Wallpapers collection that i have used on my computer.
+## This will be a personal collection of wallpapers that I have used on my computer.
+
+![preview](https://raw.githubusercontent.com/JoaoG0988/m_wallpapers/refs/heads/main/wallpapers-frontend/src/assets/preview.png)
+
 
 ### Configuração inicial
 
@@ -20,19 +23,6 @@ npm run dev:full
 ```bash
 npm run prisma:migrate
 ```
-
-### Scripts Disponíveis
-
-| Comando | Descrição |
-|---------|-----------|
-| `npm run setup` | Primeiro passo. Instala todas as dependências do projeto (Back e Front). |
-| `npm run dev:full` | Uso diário. Sobe o Docker e inicia o Back e o Front juntos. |
-| `npm run start:all` | Inicia o Back-end e o Front-end ao mesmo tempo (sem mexer no Docker). |
-| `npm run docker:up` | Inicia apenas o contentor da base de dados PostgreSQL.|
-| `npm run stop` | Para e remove o contentor do Docker. |
-| `npm run prisma:migrate` | Aplica as alterações na base de dados (Migrations). |
-| `npx prisma studio` | Para visualizar o banco de dados Prisma |
-
 
 ### Serviços da aplicação
 
