@@ -1,4 +1,4 @@
-Wallpapers collection that i have used on my computer.
+## This will be a personal collection of wallpapers that I have used on my computer.
 
 ![preview](https://raw.githubusercontent.com/JoaoG0988/m_wallpapers/refs/heads/main/wallpapers-frontend/src/assets/preview.png)
 
